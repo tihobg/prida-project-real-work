@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>CalculateMoreMutations</title>
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <form method="post" action="{% url 'proba1' %}">
+            <table>
+                {% csrf_token %}
+                <caption>
+                    Table: Calculate Patients With More Than 2 Mutations
+                </caption>
+                <thead>
+                <tr>
+                    <th >1 Abort 3 Mutations</th>
+                    <td >{{ 1_abort_3_mut }}</td>
+                </tr>
+                <tr>
+                    <th >2 Aborts 3 Mutations</th>
+                    <td >{{ 2_aborts_3_mut }}</td>
+                </tr>
+                <tr>
+                    <th >3 Aborts 3 Mutations</th>
+                    <td >{{ 3_aborts_3_mut }}</td>
+                </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+
+{% endblock %}
+
+<!--</html>-->
