@@ -267,6 +267,8 @@ def proba(request):
 
 
 
+
+
     print(prida[1])
     print(list_age[1][0])
     count_fvl = 0
@@ -404,6 +406,193 @@ def proba(request):
     # context3['fvl_1_percent'] = fvl_1_percent
 
     return render(request, 'proba.html', context4)
+
+
+def calc_patients_more_mut_p(request):
+    context3 = {}
+    prida_mutations = PridaMutations.objects.all()
+
+    list_fvl_ng = PridaMutations.objects.values_list('fvl_ng')
+    list_fvl_hetero = PridaMutations.objects.values_list('fvl_hetero')
+    list_fvl_homo = PridaMutations.objects.values_list('fvl_homo')
+
+    list_prothr_ng = PridaMutations.objects.values_list('prothr_ng')
+    list_prothr_hetero = PridaMutations.objects.values_list('prothr_hetero')
+    list_prothr_homo = PridaMutations.objects.values_list('prothr_homo')
+
+    list_pai_ng = PridaMutations.objects.values_list('pai_ng')
+    list_pai_hetero = PridaMutations.objects.values_list('pai_hetero')
+    list_pai_homo = PridaMutations.objects.values_list('pai_homo')
+
+    list_mthfr_ng = PridaMutations.objects.values_list('mthfr_ng')
+    list_mthfr_hetero = PridaMutations.objects.values_list('mthfr_hetero')
+    list_mthfr_homo = PridaMutations.objects.values_list('mthfr_homo')
+
+    list_abort = PridaMutations.objects.values_list('abort')
+    if request.method == 'POST':
+        if 'btn_patients_more_mutations' in request.POST:
+            print('Aborts List', list_abort)
+            print('List FVL', list_abort[3][0])
+
+            #####################################################
+            ### Start 1 Abort 3 Mutations #######################
+            #####################################################
+            count_abort1_mutations3 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '1.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+                            0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+                                 0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                        )
+                ):
+                    count_abort1_mutations3 = count_abort1_mutations3 + 1
+            print('1 Abort and 3 mutations: ', count_abort1_mutations3)
+
+            #####################################################
+            ### End 1 Abort 3 Mutations #########################
+            #####################################################
+
+            #####################################################
+            ### Start 2 Aborts 3 Mutations ######################
+            #####################################################
+            count_abort2_mutations3 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '2.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+                            0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+                                 0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                        )
+                ):
+                    count_abort2_mutations3 = count_abort2_mutations3 + 1
+            print('2 Aborts and 3 mutations: ', count_abort2_mutations3)
+
+            #####################################################
+            ### End 2 Aborts 3 Mutations ########################
+            #####################################################
+
+            #####################################################
+            ### Start 3 Aborts 3 Mutations ######################
+            #####################################################
+            count_abort3_mutations3 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '3.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+                            0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+                                 0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                        )
+                ):
+                    count_abort3_mutations3 = count_abort3_mutations3 + 1
+            print('3 Aborts and 3 mutations: ', count_abort3_mutations3)
+
+            #####################################################
+            ### End 3 Aborts 3 Mutations ########################
+            #####################################################
+
+            #####################################################
+            ### Start 4 Aborts 3 Mutations ######################
+            #####################################################
+            count_abort4_mutations3 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '4.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+                            0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+                                 0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+                             list_mthfr_homo[in_abort][0] == '1.0'
+                        )
+                ):
+                    count_abort4_mutations3 = count_abort4_mutations3 + 1
+            print('4 Aborts and 3 mutations: ', count_abort4_mutations3)
+            print('\n')
+
+            #####################################################
+            ### End 4 Aborts 3 Mutations ########################
+            #####################################################
+
+            #####################################################
+            ### Start 1 Abort 2 Mutations ######################
+            #####################################################
+            count_abort1_mutations_2 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '1.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_abort1_mutations_2 = count_abort1_mutations_2 + 1
+            print('1 Abort and 2 mutations: ', count_abort1_mutations_2)
+
+            #####################################################
+            ### End 1 Abort 2 Mutations #########################
+            #####################################################
+
+            context3['1_abort_2_mut'] = count_abort1_mutations_2
+            context3['4_aborts_3_mut'] = count_abort4_mutations3
+            context3['3_aborts_3_mut'] = count_abort3_mutations3
+            context3['2_aborts_3_mut'] = count_abort2_mutations3
+            context3['1_abort_3_mut'] = count_abort1_mutations3
+    return render(request, 'calc_patients_more_mut_p.html', context3)
 
 
 def proba1(request):
@@ -544,14 +733,413 @@ def proba1(request):
                   context3['count_mutations_abort3'],
                   context3['percent_mutations_abort3'])
 
+
             print(context3['index_array_age'], 'New', sublist_age)
             print(prida_list_data[0], 'Prida List Data')
     if request.method == 'POST':
         if 'btn_patients_more_mutations' in request.POST:
-            print('More Mutations', prida_list_data, len(prida_list_data))
+            print('Aborts List', list_abort)
+            print('List FVL', list_abort[3][0])
+            #####################################################
+            ### Start 1 Abort 3 Mutations #######################
+            #####################################################
+            # count_abort1_mutations3 = 0
+            # for in_abort in range(len(list_abort)):
+            #     if ((list_abort[in_abort][0] == '1.0')
+            #             and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #             )
+            #     ):
+            #         count_abort1_mutations3 = count_abort1_mutations3 + 1
+            # print('1 Abort and 3 mutations: ', count_abort1_mutations3)
+
+
+            #####################################################
+            ### End 1 Abort 3 Mutations #########################
+            #####################################################
+
+            #####################################################
+            ### Start 2 Aborts 3 Mutations ######################
+            #####################################################
+            # count_abort2_mutations3 = 0
+            # for in_abort in range(len(list_abort)):
+            #     if ((list_abort[in_abort][0] == '2.0')
+            #             and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+            #                  0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+            #                      0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #             )
+            #     ):
+            #         count_abort2_mutations3 = count_abort2_mutations3 + 1
+            # print('2 Aborts and 3 mutations: ', count_abort2_mutations3)
+
+            #####################################################
+            ### End 2 Aborts 3 Mutations ########################
+            #####################################################
+
+            #####################################################
+            ### Start 3 Aborts 3 Mutations ######################
+            #####################################################
+            # count_abort3_mutations3 = 0
+            # for in_abort in range(len(list_abort)):
+            #     if ((list_abort[in_abort][0] == '3.0')
+            #             and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+            #                 0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+            #                      0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #             )
+            #     ):
+            #         count_abort3_mutations3 = count_abort3_mutations3 + 1
+            # print('3 Aborts and 3 mutations: ', count_abort3_mutations3)
+
+            #####################################################
+            ### End 2 Aborts 3 Mutations ########################
+            #####################################################
+
+            #####################################################
+            ### Start 4 Aborts 3 Mutations ######################
+            #####################################################
+            # count_abort4_mutations3 = 0
+            # for in_abort in range(len(list_abort)):
+            #     if ((list_abort[in_abort][0] == '4.0')
+            #             and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][
+            #                 0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][
+            #                      0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] ==
+            #                  list_mthfr_homo[in_abort][0] == '1.0'
+            #             )
+            #     ):
+            #         count_abort4_mutations3 = count_abort4_mutations3 + 1
+            # print('4 Aborts and 3 mutations: ', count_abort4_mutations3)
+            # print('\n')
+
+            #####################################################
+            ### End 4 Aborts 3 Mutations ########################
+            #####################################################
+
+            # count_mutations_2 = 0
+            # for in_abort in range(len(list_abort)):
+            #     if ((list_abort[in_abort][0] == '1.0')
+            #             and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+            #                  or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+            #                  or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+            #     ):
+            #         count_mutations_2 = count_mutations_2 + 1
+            # print('1 Abort and 2 mutations: ', count_mutations_2)
+
+
+            ######################################################
+            ### Start 2 Aborts and 2 mutations ###################
+            ######################################################
+            count_mutations_abort_2 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '2.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_mutations_abort_2 = count_mutations_abort_2 + 1
+            print('2 Aborts and 2 mutations: ', count_mutations_abort_2)
+
+            ######################################################
+            ### End ##############################################
+            ######################################################
+
+            ######################################################
+            ### Start 3 Aborts and 2 mutations ###################
+            ######################################################
+            count_mutations_abort_3 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '3.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_mutations_abort_3 = count_mutations_abort_3 + 1
+            print('3 Aborts and 2 mutations: ', count_mutations_abort_3)
+
+            ######################################################
+            ### End ##############################################
+            ######################################################
+
+            ######################################################
+            ### Start 4 Aborts and 2 mutations ###################
+            ######################################################
+            count_mutations_abort_4 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '4.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_mutations_abort_4 = count_mutations_abort_4 + 1
+            print('4 Aborts and 2 mutations: ', count_mutations_abort_4)
+
+            ######################################################
+            ### End ##############################################
+            ######################################################
+
+            ######################################################
+            ### Start 5 Aborts and 2 mutations ###################
+            ######################################################
+            count_mutations_abort_5 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '5.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_mutations_abort_5 = count_mutations_abort_5 + 1
+            print('5 Aborts and 2 mutations: ', count_mutations_abort_5)
+
+            ######################################################
+            ### End ##############################################
+            ######################################################
+
+            ######################################################
+            ### Start 6 Aborts and 2 mutations ###################
+            ######################################################
+            count_mutations_abort_6 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '6.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_mutations_abort_6 = count_mutations_abort_6 + 1
+            print('6 Aborts and 2 mutations: ', count_mutations_abort_6)
+
+            ######################################################
+            ### End ##############################################
+            ######################################################
+
+            ######################################################
+            ### Start 7 Aborts and 2 mutations ###################
+            ######################################################
+            count_mutations_abort_7 = 0
+            for in_abort in range(len(list_abort)):
+                if ((list_abort[in_abort][0] == '7.0')
+                        and (list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_prothr_hetero[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_fvl_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_hetero[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_pai_homo[in_abort][0] == '1.0'
+                             or list_prothr_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0'
+                             or list_pai_homo[in_abort][0] == list_mthfr_homo[in_abort][0] == '1.0')
+                ):
+                    count_mutations_abort_7 = count_mutations_abort_7 + 1
+            print('7 Aborts and 2 mutations: ', count_mutations_abort_7)
+            print('\n')
+            ######################################################
+            ### End ##############################################
+            ######################################################
+
+            count_fvl_hetero_2_mutations = 0
+            for in_fvl_hetero_aborts_2 in range(len(list_abort)):
+                if ((list_abort[in_fvl_hetero_aborts_2][0] == '2.0' or
+                        list_abort[in_fvl_hetero_aborts_2][0] == '3.0') and
+                        list_fvl_hetero[in_fvl_hetero_aborts_2][0] == '1.0'):
+                    count_fvl_hetero_2_mutations = count_fvl_hetero_2_mutations + 1
+            print('FVL Hetero Mutations 2 or more are:', count_fvl_hetero_2_mutations)
+
+            count_fvl_homo_2_mutations = 0
+            for in_fvl_homo_aborts_2 in range(len(list_abort)):
+                if ((list_abort[in_fvl_homo_aborts_2][0] != '1.0' or
+                     list_abort[in_fvl_homo_aborts_2][0] != '') and
+                        list_fvl_homo[in_fvl_homo_aborts_2][0] == '1.0'):
+                    count_fvl_homo_2_mutations = count_fvl_homo_2_mutations + 1
+            print('FVL Homo Mutations 2 or more are:', count_fvl_homo_2_mutations)
+
+            count_prothr_hetero_2_mutations = 0
+            for in_prothr_hetero_aborts_2 in range(len(list_abort)):
+                if ((list_abort[in_prothr_hetero_aborts_2][0] != '1.0' or
+                     list_abort[in_prothr_hetero_aborts_2][0] != '') and
+                        list_prothr_hetero[in_prothr_hetero_aborts_2][0] == '1.0'):
+                    count_prothr_hetero_2_mutations = count_prothr_hetero_2_mutations + 1
+            print('PROTHR Hetero Mutations 2 or more are:', count_prothr_hetero_2_mutations)
+
+            count_prothr_homo_2_mutations = 0
+            for in_prothr_homo_aborts_2 in range(len(list_abort)):
+                if ((list_abort[in_prothr_homo_aborts_2][0] != '1.0' or
+                     list_abort[in_prothr_homo_aborts_2][0] != '') and
+                        list_prothr_homo[in_prothr_homo_aborts_2][0] == '1.0'):
+                    count_prothr_homo_2_mutations = count_prothr_homo_2_mutations + 1
+            print('PROTHR Homo Mutations 2 or more are:', count_prothr_homo_2_mutations)
+
+            count_pai_homo_2_mutations = 0
+            for in_pai_homo_aborts_2 in range(len(list_abort)):
+                if ((list_abort[in_pai_homo_aborts_2][0] != '1.0' or
+                     list_abort[in_pai_homo_aborts_2][0] != '') and
+                        list_pai_homo[in_pai_homo_aborts_2][0] == '1.0'):
+                    count_pai_homo_2_mutations = count_pai_homo_2_mutations + 1
+            print('PAI Homo Mutations 2 or more are:', count_pai_homo_2_mutations)
+
+            count_mthfr_homo_2_mutations = 0
+            for in_mthfr_homo_aborts_2 in range(len(list_abort)):
+                if ((list_abort[in_mthfr_homo_aborts_2][0] != '1.0' or
+                     list_abort[in_mthfr_homo_aborts_2][0] != '') and
+                        list_mthfr_homo[in_mthfr_homo_aborts_2][0] == '1.0'):
+                    count_mthfr_homo_2_mutations = count_mthfr_homo_2_mutations + 1
+            print('MTHFR Homo Mutations 2 or more are:', count_mthfr_homo_2_mutations)
+
+            print('\n')
+            print('######################################')
+            count_fvl_hetero_mutations = 0
+            for fvl_hetero_data in list_fvl_hetero:
+                if fvl_hetero_data[0] == '1.0':
+                    count_fvl_hetero_mutations = count_fvl_hetero_mutations + 1
+            print('FVL Hetero Mutations are:', count_fvl_hetero_mutations)
+
+            count_fvl_homo_mutations = 0
+            for fvl_homo_data in list_fvl_homo:
+                if fvl_homo_data[0] == '1.0':
+                    count_fvl_homo_mutations = count_fvl_homo_mutations + 1
+            print('FVL Homo Mutations are:', count_fvl_homo_mutations)
+
+            count_prothr_hetero_mutations = 0
+            for prothr_hetero_data in list_prothr_hetero:
+                if prothr_hetero_data[0] == '1.0':
+                    count_prothr_hetero_mutations = count_prothr_hetero_mutations + 1
+            print('PROTHR Hetero Mutations are:', count_prothr_hetero_mutations)
+
+            count_prothr_homo_mutations = 0
+            for prothr_homo_data in list_prothr_homo:
+                if prothr_homo_data[0] == '1.0':
+                    count_prothr_homo_mutations = count_prothr_homo_mutations + 1
+            print('PROTHR Homo Mutations are:', count_prothr_homo_mutations)
+
+            count_pai_homo_mutations = 0
+            for pai_homo_data in list_pai_homo:
+                if pai_homo_data[0] == '1.0':
+                    count_pai_homo_mutations = count_pai_homo_mutations + 1
+            print('PAI Homo Mutations are:', count_pai_homo_mutations)
+
+            count_mthfr_homo_mutations = 0
+            for mthfr_homo_data in list_mthfr_homo:
+                if mthfr_homo_data[0] == '1.0':
+                    count_mthfr_homo_mutations = count_mthfr_homo_mutations + 1
+            print('MTHFR Homo Mutations are:', count_mthfr_homo_mutations)
+
+            print('######################################')
+            print('\n')
+
+            print('More Mutations!@!!', prida_list_data, len(prida_list_data))
             factor_1 = []
-            factor_2 = []
-            list_factors = []
+            #list_factors = []
 
             for prida_list in prida_list_data:
                 if prida_list == 'fvl_hetero':
@@ -575,7 +1163,7 @@ def proba1(request):
             print('List Factor_1')
             print(factor_1, len(factor_1), len(list_fvl_ng))
             rows_number = len(list_fvl_ng)
-            print('Factor 1: ', factor_1[0][0][0])
+            # print('Factor 1: ', factor_1[0][0][0])
             # print('List of All Factors')
             # print(list_factors)
             # print(len(list_factors))
